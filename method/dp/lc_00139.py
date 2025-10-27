@@ -19,8 +19,8 @@ def main(ss, word_dict):
 
 
 if __name__ == '__main__':
-    ss = 'leetcode'
-    word_dict = ["leet", "code"]
+    ss = 'catsandog'
+    word_dict = ["cats", "dog", "sand", "and", "cat"]
 
     print(main(ss, word_dict))
     
