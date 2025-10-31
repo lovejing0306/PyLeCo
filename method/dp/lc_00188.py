@@ -1,8 +1,8 @@
 # coding=utf-8
 
-def main(prices, k):
+def method_0(prices, k):
     """
-    关键点：更开始，钱袋初始化为 0，如果买入，则从钱袋中减钱；如果卖出，则给钱袋加钱
+    关键点：刚开始，钱袋初始化为 0，如果买入，则从钱袋中减钱；如果卖出，则给钱袋加钱
     """
     if prices is None or len(prices) ==  0:
         return 0
@@ -46,8 +46,30 @@ def main(prices, k):
     return dp[n-1][k][0]
 
 
+def method_1(prices, k):
+    if len(prices) == 0:
+        return 0
+    
+    dp = []
+    for _ in range(len(prices)):
+        dp.append([0] * (2*k+1))   # k 次交易，总共有 2k+1 种状态
+    
+    for i in range(1, 2*k+1):
+        if i % 2 == 1:
+            dp[0][i] = -prices[0]  # 在第i次交易，持有股票
+    
+    for i in range(1, len(prices)):
+        for kk in range(1, k+1):
+            dp[i][2*kk-1] = max(dp[i-1][2*kk-1], dp[i-1][2*kk-2]-prices[i])
+            dp[i][2*kk] = max(dp[i-1][2*kk], dp[i-1][2*kk-1] + prices[i])
+    return dp[len(prices)-1][2*k]
+
+
 if __name__ == '__main__':
-    p = [3,2,6,5,0,3]
+    # p = [3,2,6,5,0,3]
+    # k = 2
+    p = [2,4,1]
     k = 2
 
-    print(main(p, k))
+    print(method_0(p, k))
+    print(method_1(p, k))
