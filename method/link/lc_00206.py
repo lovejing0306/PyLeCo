@@ -1,25 +1,5 @@
 # coding=utf-8
-
-def create_linked_list(values):
-    """根据值列表创建链表"""
-    if not values:
-        return None
-    head = ListNode(values[0])
-    current = head
-    for value in values[1:]:
-        current.next = ListNode(value)
-        current = current.next
-    return head
-
-def print_linked_list(head):
-    """打印链表"""
-    result = []
-    current = head
-    while current:
-        result.append(current.value)
-        current = current.next
-    return result
-
+from util import create_linked_list, print_linked_list
 
 class ListNode():
     def __init__(self, value, next_node=None):
@@ -44,9 +24,23 @@ def main(head):
     return last_node.next
 
 
+def method_2(head):
+    l = None
+    r = head
+
+    while r is not None:
+        cur = r
+        r = r.next
+
+        cur.next = l
+        l = cur
+    return l
+
+
 if __name__ == '__main__':
     values = [0,1,2,3,4]
     head = create_linked_list(values)
 
-    cur = main(head)
+    # cur = main(head)
+    cur = method_2(head)
     print(print_linked_list(cur))
