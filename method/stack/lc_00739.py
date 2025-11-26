@@ -2,7 +2,7 @@
 
 def main(array):
     if array is None or len(array) == 0:
-        return None
+        return []
 
     res = [0] * len(array)
     stack = []
