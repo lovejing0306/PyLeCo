@@ -14,7 +14,6 @@ def main(nums):
     dp_0 = [0] * len(nums)
     dp_0[0] = 0
     dp_0[1] = nums[1]
-
     for i in range(2, len(dp_0)):
         dp_0[i] = max(dp_0[i-1], dp_0[i-2] + nums[i])
     

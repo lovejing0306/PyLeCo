@@ -59,9 +59,9 @@ def method_1(prices, k):
             dp[0][i] = -prices[0]  # 在第i次交易，持有股票
     
     for i in range(1, len(prices)):
-        for kk in range(1, k+1):
-            dp[i][2*kk-1] = max(dp[i-1][2*kk-1], dp[i-1][2*kk-2]-prices[i])
-            dp[i][2*kk] = max(dp[i-1][2*kk], dp[i-1][2*kk-1] + prices[i])
+        for j in range(1, k+1):
+            dp[i][2*j-1] = max(dp[i-1][2*j-1], dp[i-1][2*j-2]-prices[i])
+            dp[i][2*j] = max(dp[i-1][2*j], dp[i-1][2*j-1] + prices[i])
     return dp[len(prices)-1][2*k]
 
 
