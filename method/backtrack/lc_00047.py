@@ -21,7 +21,6 @@ def dfs(nums, visited, path, paths):
         dfs(nums, visited, path, paths)
         visited[i] = False
         path.pop()
-    del layer_visited
 
 
 def main(nums):
@@ -29,6 +28,7 @@ def main(nums):
     path = []
     visited = {}  # 记录在不同层之间被访问过的索引
     
+    # nums.sort()  
     for i in range(len(nums)):
         visited[i] = False   # 默认所有节点没有被访问过
     
@@ -37,6 +37,6 @@ def main(nums):
 
 
 if __name__ == '__main__':
-    nums = [1,2,1]
+    nums = [1,2,3]
     paths = main(nums)
     print(paths)
