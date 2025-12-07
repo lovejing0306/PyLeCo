@@ -36,6 +36,9 @@ def dfs(n, ss, matrix):
     return True
 
 def main(board, n):
+    """ 
+    这种解法会超时
+    """
     ss = "123456789"
     dfs(n, ss, board)
 
