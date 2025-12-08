@@ -1,17 +1,17 @@
 # coding=utf-8
 
-def main(array, target):
+def main(nums, target):
     l = 0
-    r = len(array)-1
+    r = len(nums)-1
 
     while l <= r:
-        m = l + (r-l)//2   # 一定要使用这种方式计算中间索引
-        if array[m] == target:
+        m = l + (r-l) // 2
+        if nums[m] == target:
             return m
-        elif array[m] > target:
-            r = m-1
-        else:
+        elif nums[m] < target:
             l = m+1
+        else:
+            r = m-1
     return -1
 
 

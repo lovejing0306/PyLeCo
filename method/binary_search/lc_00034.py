@@ -1,36 +1,55 @@
 # coding=utf-8
 
 def main(nums, target):
-    n = len(nums)
     res = [-1, -1]
 
     l = 0
-    r = n - 1
-    while l <= r:
-        m = (l + r) // 2
-        if nums[m] >= target:
-            r = m - 1
+    r = len(nums)-1
+    while l<=r:
+        m = l + (r-l)//2
+        if nums[m] < target:
+            l = m+1
+        elif nums[m] > target:
+            r = m-1
         else:
-            l = m + 1
-    if l < n and nums[l] == target:
-        res[0] = l
-    else:
-        return res
+            if m == 0:
+                r=m
+                break
+            elif nums[m] != nums[m-1]:
+                r=m
+                break
+            else:
+                r = m-1
+    if r >=0 and nums[r] == target:  # 必须做边界校验
+        res[0] = r
 
     l = 0
-    r = n - 1
-    while l <= r:
-        m = (l + r) // 2
-        if nums[m] <= target:
-            l = m + 1
+    r = len(nums)-1
+    while l <=r:
+        m = l + (r-l) // 2
+        if nums[m] < target:
+            l = m+1
+        elif nums[m] > target:
+            r = m-1
         else:
-            r = m - 1
-    res[1] = r
+            if m == len(nums)-1:
+                l=m
+                break
+            elif nums[m] != nums[m+1]:
+                l=m
+                break
+            else:
+                l=m+1
+
+    if l < len(nums) and nums[l] == target:  # 必须做边界校验
+        res[1] = l
     return res
 
 
 if __name__ == '__main__':
-    # a = [1,1,1,2,2,6,7]
-    a = [5,7,7,8,8,10]
-    target = 8
-    print(main(a, target))
+    # nums = [-1,0,3,5,9,12]
+    # target = 9
+    nums = [5,7,7,8,8,10]
+    target = 4
+    res = main(nums, target)
+    print(res)
