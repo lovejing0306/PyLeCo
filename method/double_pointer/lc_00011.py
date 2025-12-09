@@ -1,20 +1,18 @@
 # coding=utf-8
 
 def main(nums):
-    max_v = 0
-
     l = 0
     r = len(nums)-1
 
+    max_val = 0
     while l < r:
-        area = min(nums[l], nums[r]) * (r-l)
-        max_v = max(area, max_v)
-        if nums[l] < nums[r]:  # 那个指针的值小，则移动那个指针
+        area = (r-l) * min(nums[l], nums[r])
+        max_val = max(area, max_val)
+        if nums[l] < nums[r]:
             l+=1
         else:
             r-=1
-    return max_v
-
+    return max_val
 
 if __name__ == '__main__':
     nums = [1,1]
