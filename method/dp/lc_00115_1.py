@@ -30,4 +30,3 @@ if __name__ == '__main__':
     # t = 'bag'
     res = main(s, t)
     print(res)
-
